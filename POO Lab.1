@@ -1,0 +1,190 @@
+//Laborator 1
+//Sarcina 1
+#include <iostream>
+#include <cmath>
+
+// Definim o structură Complex pentru a reprezenta numerele complexe cu părțile lor reală și imaginară.
+struct Complex {
+    double real;
+    double imag;
+};
+
+// Funcții de setare/citire a părții reale și imaginare
+void setComplex(Complex& c, double real, double imag) {
+    c.real = real;
+    c.imag = imag;
+}
+
+// Funcții de adunare, scădere, înmulțire și împărțire a două numere complexe
+Complex addComplex(const Complex& c1, const Complex& c2) {
+    Complex result;
+    result.real = c1.real + c2.real;
+    result.imag = c1.imag + c2.imag;
+    return result;
+}
+
+Complex subtractComplex(const Complex& c1, const Complex& c2) {
+    Complex result;
+    result.real = c1.real - c2.real;
+    result.imag = c1.imag - c2.imag;
+    return result;
+}
+
+Complex multiplyComplex(const Complex& c1, const Complex& c2) {
+    Complex result;
+    result.real = c1.real * c2.real - c1.imag * c2.imag; // Înmulțim părțile reale și scădem produsul părților imaginare
+    result.imag = c1.real * c2.imag + c1.imag * c2.real; // Înmulțim partea reală cu partea imaginară și adunăm celelalte produse
+    return result;
+}
+
+Complex divideComplex(const Complex& c1, const Complex& c2) {
+    Complex result;
+    double denominator = c2.real * c2.real + c2.imag * c2.imag; // Calculăm numitorul pentru împărțire
+    result.real = (c1.real * c2.real + c1.imag * c2.imag) / denominator; // Împărțim produsul părților reale și imaginare
+    result.imag = (c1.imag * c2.real - c1.real * c2.imag) / denominator; // Împărțim produsul dintre partea imaginară a primului număr și partea reală a celui de-al doilea
+    return result;
+}
+
+// Funcția ce calculează și returnează modulul unui număr complex
+double modulusComplex(const Complex& c) {
+    return sqrt(c.real * c.real + c.imag * c.imag); // Calculăm modulul folosind formula radicalului din partea reală și cea imaginară
+}
+}
+
+// Funcție pentru comparație între două numere complexe
+bool compareComplex(const Complex& c1, const Complex& c2) {
+    double mod1 = modulusComplex(c1);
+    double mod2 = modulusComplex(c2);
+    return mod1 < mod2;
+}
+
+int main() {
+    Complex num1, num2;
+    setComplex(num1, 3.0, 4.0);
+    setComplex(num2, 1.0, 2.0);
+
+    // Adunare
+    Complex sum = addComplex(num1, num2);
+    std::cout << "Sum: " << sum.real << " + " << sum.imag << "i\n";
+
+    // Scădere
+    Complex diff = subtractComplex(num1, num2);
+    std::cout << "Difference: " << diff.real << " + " << diff.imag << "i\n";
+
+    // Înmulțire
+    Complex product = multiplyComplex(num1, num2);
+    std::cout << "Product: " << product.real << " + " << product.imag << "i\n";
+
+    // Împărțire
+    Complex quotient = divideComplex(num1, num2);
+    std::cout << "Quotient: " << quotient.real << " + " << quotient.imag << "i\n";
+
+    // Modul
+    double mod = modulusComplex(num1);
+    std::cout << "Modulus of num1: " << mod << std::endl;
+
+    // Comparare
+    if (compareComplex(num1, num2)) {
+        std::cout << "num1 is smaller than num2\n";
+    }
+    else {
+        std::cout << "num1 is not smaller than num2\n";
+    }
+
+    return 0;
+}
+
+
+//Laboratorul 2
+#include <iostream>
+#include <cmath>
+
+// Definim o structură Complex pentru a reprezenta numerele complexe cu părțile lor reală și imaginară.
+struct Complex {
+    double real;
+    double imag;
+};
+
+// Funcții de setare/citire a părții reale și imaginare
+void setComplex(Complex& c, double real, double imag) {
+    c.real = real;
+    c.imag = imag;
+}
+
+// Funcția ce calculează și returnează modulul unui număr complex
+double modulusComplex(const Complex& c) {
+    return sqrt(c.real * c.real + c.imag * c.imag);
+}
+
+// Funcții de adunare, scădere, înmulțire și împărțire a două numere complexe
+Complex addComplex(const Complex& c1, const Complex& c2) {
+    Complex result;
+    result.real = c1.real + c2.real;
+    result.imag = c1.imag + c2.imag;
+    return result;
+}
+
+Complex subtractComplex(const Complex& c1, const Complex& c2) {
+    Complex result;
+    result.real = c1.real - c2.real;
+    result.imag = c1.imag - c2.imag;
+    return result;
+}
+
+Complex multiplyComplex(const Complex& c1, const Complex& c2) {
+    Complex result;
+    result.real = c1.real * c2.real - c1.imag * c2.imag; // Înmulțim părțile reale și scădem produsul părților imaginare
+    result.imag = c1.real * c2.imag + c1.imag * c2.real; // Înmulțim partea reală cu partea imaginară și adunăm celelalte produse
+    return result;
+}
+
+Complex divideComplex(const Complex& c1, const Complex& c2) {
+    Complex result;
+    double denominator = c2.real * c2.real + c2.imag * c2.imag; // Calculăm numitorul pentru împărțire
+    result.real = (c1.real * c2.real + c1.imag * c2.imag) / denominator; // Împărțim produsul părților reale și imaginare
+    result.imag = (c1.imag * c2.real - c1.real * c2.imag) / denominator; // Împărțim produsul dintre partea imaginară a primului număr și partea reală a celui de-al doilea
+    return result;
+}
+
+// Funcție pentru comparație între două numere complexe
+bool compareComplex(const Complex& c1, const Complex& c2) {
+    double mod1 = modulusComplex(c1);
+    double mod2 = modulusComplex(c2);
+    return mod1 < mod2;
+}
+
+int main() {
+    Complex num1, num2;
+    setComplex(num1, 3.0, 4.0);
+    setComplex(num2, 1.0, 2.0);
+
+    // Adunare
+    Complex sum = addComplex(num1, num2);
+    std::cout << "Sum: " << sum.real << " + " << sum.imag << "i\n";
+
+    // Scădere
+    Complex diff = subtractComplex(num1, num2);
+    std::cout << "Difference: " << diff.real << " + " << diff.imag << "i\n";
+
+    // Înmulțire
+    Complex product = multiplyComplex(num1, num2);
+    std::cout << "Product: " << product.real << " + " << product.imag << "i\n";
+
+    // Împărțire
+    Complex quotient = divideComplex(num1, num2);
+    std::cout << "Quotient: " << quotient.real << " + " << quotient.imag << "i\n";
+
+    // Modul
+    double mod = modulusComplex(num1);
+    std::cout << "Modulus of num1: " << mod << std::endl;
+
+    // Comparare
+    if (compareComplex(num1, num2)) {
+        std::cout << "num1 is smaller than num2\n";
+    }
+    else {
+        std::cout << "num1 is not smaller than num2\n";
+    }
+
+    return 0;
+}
